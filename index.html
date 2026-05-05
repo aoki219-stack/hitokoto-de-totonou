@@ -436,7 +436,7 @@
       </div>
 
       <div class="button-row">
-        <button id="generateButton" class="primary-button" type="button">文章の入口を作る</button>
+        <button id="generateButton" class="primary-button" type="button">たたき台を作る</button>
         <button id="retryButton" class="secondary-button" type="button" disabled>もう一度作る</button>
         <button id="clearButton" class="ghost-button" type="button">別の言葉</button>
       </div>
@@ -523,7 +523,7 @@
     function setLoading(isLoading) {
       generateButton.disabled = isLoading;
       retryButton.disabled = isLoading || !lastRequest;
-      generateButton.textContent = isLoading ? "整えています…" : "文章の入口を作る";
+      generateButton.textContent = isLoading ? "整えています…" : "たたき台を作る";
     }
 
     function getHistory() {
