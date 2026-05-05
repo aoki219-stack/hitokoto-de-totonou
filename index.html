@@ -372,7 +372,7 @@
 <body>
   <main class="page">
     <section class="hero">
-      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.2</div>
+      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.3</div>
       <h1>一言で整える</h1>
 
       <p class="tagline">
@@ -723,6 +723,79 @@
     });
 
     renderHistory();
+
+        /* v1.3 コピー内容修正：
+       画面デザインや既存レイアウトは触らず、
+       コピー時に「今、思い浮かんだもの」「文章タイプ」「視点」を含める。
+    */
+    (() => {
+      const oldCopyButton =
+        document.getElementById("copyButton") ||
+        document.getElementById("copyBtn");
+
+      if (!oldCopyButton) return;
+
+      const newCopyButton = oldCopyButton.cloneNode(true);
+      oldCopyButton.parentNode.replaceChild(newCopyButton, oldCopyButton);
+
+      newCopyButton.addEventListener("click", async () => {
+        const word =
+          document.getElementById("wordInput")?.value?.trim() || "";
+
+        const type =
+          document.getElementById("typeSelect")?.value || "";
+
+        const viewpoint =
+          document.getElementById("viewSelect")?.value || "";
+
+        const title =
+          document.getElementById("titleOutput")?.innerText?.trim() || "";
+
+        const draft =
+          document.getElementById("draftOutput")?.innerText?.trim() || "";
+
+        const hints =
+          document.getElementById("hintsOutput")?.innerText?.trim() || "";
+
+        const copyText = `【今、思い浮かんだもの】
+${word}
+
+【文章タイプ】
+${type}
+
+【視点】
+${viewpoint}
+
+【タイトル案】
+${title}
+
+【たたき台】
+${draft}
+
+【広げるヒント】
+${hints}`;
+
+        try {
+          await navigator.clipboard.writeText(copyText);
+        } catch (error) {
+          const textarea = document.createElement("textarea");
+          textarea.value = copyText;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
+
+        const copyStatus =
+          document.getElementById("copyStatus") ||
+          document.getElementById("copyStatusText");
+
+        if (copyStatus) {
+          copyStatus.textContent =
+            "コピーしました。入力内容・文章タイプ・視点も一緒に入っています。";
+        }
+      });
+    })();
   </script>
 </body>
 </html>
