@@ -4,17 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>一言で整える｜ひとつの言葉から文章のきっかけを作る</title>
+  <meta name="description" content="一言で整えるは、ひとつの言葉からAIが文章のたたき台を作る、小さな文章発想ツールです。" />
+
   <style>
     :root {
-      --bg: #f3f8f2;
-      --card: #ffffff;
-      --text: #243024;
-      --muted: #667566;
-      --main: #5f8f63;
-      --main-dark: #3f6f47;
-      --main-soft: #e4f0e3;
-      --line: #d7e5d6;
-      --shadow: 0 18px 45px rgba(48, 76, 52, 0.12);
+      --bg: #f1f7ef;
+      --card: #fbfff8;
+      --card-soft: #f0f8ed;
+      --text: #1f2d24;
+      --muted: #657467;
+      --line: #d4e3d2;
+      --accent: #5f8f63;
+      --accent-dark: #365f3b;
+      --accent-soft: #e2f0df;
+      --danger: #b45a4a;
+      --shadow: 0 18px 40px rgba(54, 95, 59, 0.13);
       --radius: 22px;
     }
 
@@ -24,142 +28,141 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(160, 205, 150, 0.28), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(200, 225, 195, 0.42), transparent 38%),
-        var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 34%),
+        linear-gradient(135deg, #f3faef 0%, #fbfff8 45%, #edf5e9 100%);
+      min-height: 100vh;
       line-height: 1.8;
     }
 
     a {
-      color: var(--main-dark);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    a:hover {
-      text-decoration: underline;
+      color: inherit;
     }
 
     .page {
-      max-width: 980px;
+      width: min(1040px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 16px 48px;
+      padding: 32px 0 56px;
     }
 
     .hero {
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(215, 229, 214, 0.9);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 30px 22px;
-      margin-bottom: 20px;
+      padding: 48px 22px 32px;
+      text-align: center;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--main-soft);
-      color: var(--main-dark);
+      gap: 8px;
+      padding: 8px 14px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 14px;
+      background: rgba(251, 255, 248, 0.78);
+      color: var(--muted);
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(54, 95, 59, 0.1);
+      backdrop-filter: blur(8px);
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(34px, 7vw, 58px);
-      letter-spacing: 0.04em;
-      line-height: 1.16;
+      margin: 22px 0 10px;
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      letter-spacing: 0.08em;
+      line-height: 1.12;
+      font-weight: 800;
     }
 
     .tagline {
-      font-size: clamp(20px, 4vw, 30px);
-      font-weight: 800;
-      line-height: 1.5;
-      margin: 8px 0 18px;
-      color: #314533;
+      margin: 0 auto 22px;
+      color: var(--accent-dark);
+      font-size: clamp(1.25rem, 3.2vw, 2rem);
+      font-weight: 700;
+      line-height: 1.55;
     }
 
     .lead {
-      margin: 0;
+      margin: 16px auto 0;
+      max-width: 680px;
       color: var(--muted);
-      font-size: 15.5px;
+      font-size: 1rem;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
+    .field-note {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .app-card {
       margin-top: 18px;
+      padding: 24px;
+      border: 1px solid rgba(212, 227, 210, 0.95);
+      border-radius: var(--radius);
+      background: rgba(251, 255, 248, 0.9);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.7fr;
+      gap: 16px;
+      align-items: start;
     }
 
     label {
       display: block;
-      font-weight: 800;
-      margin: 0 0 8px;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
     input,
     select,
-    textarea,
-    button {
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffdf8;
+      color: var(--text);
       font: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
     input,
     select {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 13px 14px;
-      background: #fff;
-      color: var(--text);
-      outline: none;
+      height: 54px;
+      padding: 0 15px;
     }
 
     input:focus,
-    select:focus {
-      border-color: var(--main);
-      box-shadow: 0 0 0 4px rgba(95, 143, 99, 0.14);
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(95, 143, 99, 0.16);
+      background: #fffefa;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr;
-      gap: 14px;
-      align-items: end;
-    }
-
-    .help {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 6px 0 0;
-    }
-
-    .buttons {
+    .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       margin-top: 18px;
     }
 
     button {
-      border: 0;
+      border: none;
       border-radius: 999px;
-      padding: 12px 18px;
+      padding: 13px 20px;
+      font: inherit;
+      font-weight: 700;
       cursor: pointer;
-      font-weight: 800;
-      transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s, opacity 0.18s;
     }
 
     button:hover {
@@ -168,186 +171,238 @@
 
     button:disabled {
       cursor: not-allowed;
-      opacity: 0.58;
+      opacity: 0.62;
       transform: none;
     }
 
-    .primary {
-      background: var(--main);
+    .primary-button {
+      background: var(--accent);
       color: #fff;
+      box-shadow: 0 12px 24px rgba(54, 95, 59, 0.24);
     }
 
-    .primary:hover {
-      background: var(--main-dark);
+    .primary-button:hover:not(:disabled) {
+      background: var(--accent-dark);
     }
 
-    .secondary {
-      background: var(--main-soft);
-      color: var(--main-dark);
-      border: 1px solid var(--line);
+    .secondary-button {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
     }
 
-    .ghost {
+    .ghost-button {
       background: transparent;
-      color: var(--main-dark);
+      color: var(--muted);
       border: 1px solid var(--line);
     }
 
     .notice {
-      background: #f8fbf7;
-      border: 1px dashed var(--line);
-      border-radius: 16px;
+      margin: 18px 0 0;
       padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(226, 240, 223, 0.76);
       color: var(--muted);
-      font-size: 14px;
-      margin-top: 18px;
+      font-size: 0.94rem;
+    }
+
+    .status {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status.error {
+      color: var(--danger);
+      font-weight: 700;
     }
 
     .result {
       display: none;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
     }
 
-    .result.active {
+    .result.is-visible {
       display: block;
     }
 
-    .section {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
+    .result-section {
       margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--card-soft);
+      border: 1px solid rgba(212, 227, 210, 0.95);
     }
 
-    h2 {
-      margin: 0 0 12px;
-      font-size: 21px;
+    .result-section h2 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: var(--accent-dark);
     }
 
-    .output-box {
-      background: #fbfdfb;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
+    .result-text {
+      margin: 0;
       white-space: pre-wrap;
-      word-break: break-word;
     }
 
-    .title-list {
-      margin: 0;
-      padding-left: 1.2em;
-    }
-
-    .hint-list {
-      margin: 0;
-      padding-left: 1.2em;
-    }
-
-    .status {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      min-height: 1.6em;
+    .history-card {
+      margin-top: 24px;
+      padding: 20px;
+      border: 1px solid rgba(212, 227, 210, 0.95);
+      border-radius: var(--radius);
+      background: rgba(251, 255, 248, 0.78);
     }
 
     .history-head {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
-      align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+    }
+
+    .history-head h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .history-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
     .history-list {
       display: grid;
       gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
     .history-item {
+      display: grid;
+      gap: 4px;
+      padding: 13px 14px;
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 12px;
-      background: #fbfdfb;
-      cursor: pointer;
+      background: #fffdf8;
     }
 
-    .history-item:hover {
-      background: var(--main-soft);
-    }
-
-    .history-meta {
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 4px;
+    .history-item button {
+      width: 100%;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      text-align: left;
+      color: inherit;
+      font-weight: 500;
     }
 
     .history-title {
       font-weight: 800;
-      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .history-meta {
+      color: var(--muted);
+      font-size: 0.86rem;
     }
 
     .note-link {
+      margin-top: 24px;
+      padding: 24px 20px;
+      border-radius: var(--radius);
+      background: rgba(31, 45, 36, 0.9);
+      color: #fbfff8;
+      box-shadow: var(--shadow);
       text-align: center;
-      color: var(--muted);
     }
 
     .note-link p {
-      margin: 6px 0;
+      margin: 0 0 12px;
+      color: rgba(251, 255, 248, 0.84);
     }
 
-    .footer {
+    .note-link a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fbfff8;
+      color: #1f2d24;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 30px;
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
-      margin-top: 22px;
+      font-size: 0.86rem;
     }
 
-    @media (max-width: 780px) {
-      .grid {
+    @media (max-width: 820px) {
+      .page {
+        width: min(100% - 22px, 1040px);
+        padding-top: 18px;
+      }
+
+      .hero {
+        padding: 34px 8px 24px;
+      }
+
+      .app-card {
+        padding: 18px;
+      }
+
+      .form-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero,
-      .card {
-        padding: 20px 16px;
-      }
-
-      .buttons {
-        flex-direction: column;
-      }
-
-      button {
-        width: 100%;
-      }
-
-      .history-head {
-        align-items: flex-start;
-        flex-direction: column;
+      .button-row button {
+        flex: 1 1 100%;
       }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
     <section class="hero">
-      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.3</div>
+      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.2</div>
       <h1>一言で整える</h1>
-      <div class="tagline">ひとつの言葉から、<br />文章のきっかけを作る。</div>
+
+      <p class="tagline">
+        ひとつの言葉から、<br />
+        文章のきっかけを作る。
+      </p>
+
       <p class="lead">
         書きたいことがあるような、ないような日。<br />
-        そんなときは、まずひとつだけ入れてみてください。<br /><br />
+        そんなときは、まずひとつだけ入れてみてください。
+      </p>
+
+      <p class="lead">
         一言で整えるは、<br />
         ひとつの言葉からAIが文章のたたき台を作る、<br />
-        小さな文章発想ツールです。<br /><br />
+        小さな文章発想ツールです。
+      </p>
+
+      <p class="lead">
         入れるのは、今ふと思い浮かんだもの。<br />
         AIがその言葉を手がかりに、<br />
         note、日記、投稿文、短い物語などへ広げます。
       </p>
     </section>
 
-    <section class="card">
-      <div class="grid">
+    <section class="app-card" aria-label="文章生成フォーム">
+      <div class="form-grid">
         <div>
           <label for="wordInput">今、思い浮かんだもの</label>
-          <input id="wordInput" type="text" placeholder="もの・場所・できごとをひとつ" />
+          <input id="wordInput" type="text" maxlength="40" placeholder="もの・場所・できごとをひとつ" autocomplete="off" />
         </div>
 
         <div>
@@ -366,7 +421,7 @@
             <option value="俳句・短歌風">俳句・短歌風</option>
             <option value="プロット">プロット</option>
           </select>
-          <p class="help">12種類の文章から選べます。</p>
+          <p class="field-note">12種類の文章から選べます。</p>
         </div>
 
         <div>
@@ -376,240 +431,114 @@
             <option value="一人称">一人称</option>
             <option value="三人称">三人称</option>
           </select>
-          <p class="help">おまかせ・一人称・三人称から選べます。</p>
+          <p class="field-note">おまかせ・一人称・三人称から選べます。</p>
         </div>
       </div>
 
-      <div class="buttons">
-        <button id="generateBtn" class="primary">たたき台を作る</button>
-        <button id="retryBtn" class="secondary" disabled>もう一度作る</button>
-        <button id="clearBtn" class="ghost">別の言葉</button>
+      <div class="button-row">
+        <button id="generateButton" class="primary-button" type="button">たたき台を作る</button>
+        <button id="retryButton" class="secondary-button" type="button" disabled>もう一度作る</button>
+        <button id="clearButton" class="ghost-button" type="button">別の言葉</button>
       </div>
 
-      <div class="notice">
+      <p class="notice">
         AIが作るのは完成品ではなく、文章を書くためのたたき台です。<br />
         気になる一文を残し、合わない部分は削りながら、<br />
         自分の文章に整えてみてください。
-      </div>
+      </p>
 
-      <div id="status" class="status"></div>
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <section id="result" class="result" aria-label="生成結果">
+        <div class="result-section">
+          <h2>タイトル案</h2>
+          <p id="titleOutput" class="result-text"></p>
+        </div>
+
+        <div class="result-section">
+          <h2>たたき台</h2>
+          <p id="draftOutput" class="result-text"></p>
+        </div>
+
+        <div class="result-section">
+          <h2>広げるヒント</h2>
+          <p id="hintsOutput" class="result-text"></p>
+        </div>
+
+        <div class="button-row">
+          <button id="copyButton" class="secondary-button" type="button">コピーする</button>
+        </div>
+      </section>
     </section>
 
-    <section id="resultCard" class="card result">
-      <div class="section" style="border-top: 0; padding-top: 0; margin-top: 0;">
-        <h2>タイトル案</h2>
-        <div id="titleOutput" class="output-box"></div>
-      </div>
-
-      <div class="section">
-        <h2>たたき台</h2>
-        <div id="draftOutput" class="output-box"></div>
-      </div>
-
-      <div class="section">
-        <h2>広げるヒント</h2>
-        <div id="hintsOutput" class="output-box"></div>
-      </div>
-
-      <div class="buttons">
-        <button id="copyBtn" class="primary">コピーする</button>
-      </div>
-      <div id="copyStatus" class="status"></div>
-    </section>
-
-    <section class="card">
+    <section class="history-card" aria-label="履歴">
       <div class="history-head">
         <h2>履歴</h2>
-        <button id="clearHistoryBtn" class="ghost">履歴を消す</button>
+        <button id="clearHistoryButton" class="ghost-button" type="button">履歴を消す</button>
       </div>
-      <div id="historyList" class="history-list"></div>
-      <p class="help">※PCとスマホの履歴は共有されません。今使っている端末にだけ保存されます。</p>
+      <p class="history-note">※PCとスマホの履歴は共有されません。今使っている端末にだけ保存されます。</p>
+      <ul id="historyList" class="history-list"></ul>
     </section>
 
-    <section class="card note-link">
-      <p>このアプリは note「余白人」の流れから生まれました。</p>
-      <p>日常の余白、ひとり時間、言葉のことを綴っています。</p>
-      <p><a href="https://note.com/unique_coyote793" target="_blank" rel="noopener">余白人 note を読む</a></p>
+    <section class="note-link">
+      <p>
+        このアプリは note「余白人」の流れから生まれました。<br />
+        日常の余白、ひとり時間、言葉のことを綴っています。
+      </p>
+      <a href="https://note.com/unique_coyote793" target="_blank" rel="noopener noreferrer">余白人 note を読む</a>
     </section>
 
-    <div class="footer">一言で整える｜ひとつの言葉から文章のきっかけを作る</div>
+    <footer>
+      <p>一言で整える｜ひとつの言葉から文章のきっかけを作る</p>
+    </footer>
   </main>
 
   <script>
     const WORKER_URL = "https://crimson-thunder-3893hitokoto-de-totonou.aoki219.workers.dev";
+    const STORAGE_KEY = "hitokoto-de-totonou-history-v1";
 
     const wordInput = document.getElementById("wordInput");
     const typeSelect = document.getElementById("typeSelect");
     const viewSelect = document.getElementById("viewSelect");
-
-    const generateBtn = document.getElementById("generateBtn");
-    const retryBtn = document.getElementById("retryBtn");
-    const clearBtn = document.getElementById("clearBtn");
-    const copyBtn = document.getElementById("copyBtn");
-    const clearHistoryBtn = document.getElementById("clearHistoryBtn");
-
+    const generateButton = document.getElementById("generateButton");
+    const retryButton = document.getElementById("retryButton");
+    const clearButton = document.getElementById("clearButton");
+    const copyButton = document.getElementById("copyButton");
+    const clearHistoryButton = document.getElementById("clearHistoryButton");
     const statusEl = document.getElementById("status");
-    const copyStatusEl = document.getElementById("copyStatus");
-
-    const resultCard = document.getElementById("resultCard");
+    const resultEl = document.getElementById("result");
     const titleOutput = document.getElementById("titleOutput");
     const draftOutput = document.getElementById("draftOutput");
     const hintsOutput = document.getElementById("hintsOutput");
     const historyList = document.getElementById("historyList");
 
-    let currentResult = null;
-    const HISTORY_KEY = "hitokoto_de_totonou_history_v13";
+    let lastRequest = null;
+    let lastResult = null;
 
-    function normalizeHints(hints) {
-      if (Array.isArray(hints)) return hints.map(String).filter(Boolean);
-      if (typeof hints === "string") {
-        return hints
-          .split(/\n+/)
-          .map((item) => item.replace(/^[-・\d.、\s]+/, "").trim())
-          .filter(Boolean);
-      }
-      return [];
-    }
-
-    function normalizeTitle(title) {
-      if (Array.isArray(title)) return title.map(String).filter(Boolean).join("\n");
-      return String(title || "").trim();
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.classList.toggle("error", isError);
     }
 
     function setLoading(isLoading) {
-      generateBtn.disabled = isLoading;
-      retryBtn.disabled = isLoading || !currentResult;
-      clearBtn.disabled = isLoading;
-      generateBtn.textContent = isLoading ? "作成中..." : "たたき台を作る";
-    }
-
-    function renderResult(result) {
-      const titleText = normalizeTitle(result.title);
-      const hints = normalizeHints(result.hints);
-
-      titleOutput.textContent = titleText;
-      draftOutput.textContent = String(result.draft || "").trim();
-      hintsOutput.textContent = hints.join("\n");
-
-      resultCard.classList.add("active");
-      retryBtn.disabled = false;
-      copyStatusEl.textContent = "";
-    }
-
-    function makeCopyText() {
-      if (!currentResult) return "";
-
-      const titleText = normalizeTitle(currentResult.title);
-      const hints = normalizeHints(currentResult.hints);
-
-      return `【今、思い浮かんだもの】
-${wordInput.value.trim()}
-
-【文章タイプ】
-${typeSelect.value}
-
-【視点】
-${viewSelect.value}
-
-【タイトル案】
-${titleText}
-
-【たたき台】
-${String(currentResult.draft || "").trim()}
-
-【広げるヒント】
-${hints.join("\n")}`;
-    }
-
-    async function generateText() {
-      const word = wordInput.value.trim();
-      const type = typeSelect.value;
-      const viewpoint = viewSelect.value;
-
-      if (!word) {
-        statusEl.textContent = "まず、思い浮かんだものをひとつ入れてください。";
-        wordInput.focus();
-        return;
-      }
-
-      statusEl.textContent = "";
-      copyStatusEl.textContent = "";
-      setLoading(true);
-
-      try {
-        const response = await fetch(WORKER_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            word,
-            type,
-            viewpoint
-          })
-        });
-
-        const data = await response.json().catch(() => null);
-
-        if (!response.ok) {
-          throw new Error(data?.error || "文章の作成に失敗しました。");
-        }
-
-        const result = {
-          word,
-          type,
-          viewpoint,
-          title: data.title || data.titles || "",
-          draft: data.draft || "",
-          hints: normalizeHints(data.hints),
-          createdAt: new Date().toISOString()
-        };
-
-        if (!result.title || !result.draft) {
-          throw new Error("AIの返答をうまく読み取れませんでした。もう一度試してください。");
-        }
-
-        currentResult = result;
-        renderResult(result);
-        saveHistory(result);
-        renderHistory();
-        statusEl.textContent = "たたき台を作りました。気になる一文から整えてみてください。";
-      } catch (error) {
-        console.error(error);
-        statusEl.textContent = error.message || "うまく作成できませんでした。少し時間をおいて試してください。";
-      } finally {
-        setLoading(false);
-      }
+      generateButton.disabled = isLoading;
+      retryButton.disabled = isLoading || !lastRequest;
+      generateButton.textContent = isLoading ? "整えています…" : "たたき台を作る";
     }
 
     function getHistory() {
       try {
-        const raw = localStorage.getItem(HISTORY_KEY);
-        const parsed = raw ? JSON.parse(raw) : [];
-        return Array.isArray(parsed) ? parsed : [];
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
       } catch {
         return [];
       }
     }
 
-    function saveHistory(result) {
+    function saveHistory(item) {
       const history = getHistory();
-      const next = [result, ...history].slice(0, 20);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
-    }
-
-    function formatDate(iso) {
-      try {
-        const date = new Date(iso);
-        return date.toLocaleString("ja-JP", {
-          month: "numeric",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
-        });
-      } catch {
-        return "";
-      }
+      const nextHistory = [item, ...history].slice(0, 12);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextHistory));
+      renderHistory();
     }
 
     function renderHistory() {
@@ -617,83 +546,179 @@ ${hints.join("\n")}`;
       historyList.innerHTML = "";
 
       if (history.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "help";
-        empty.textContent = "まだ履歴はありません。";
-        historyList.appendChild(empty);
+        const emptyItem = document.createElement("li");
+        emptyItem.className = "history-item";
+        emptyItem.textContent = "まだ履歴はありません。";
+        historyList.appendChild(emptyItem);
         return;
       }
 
       history.forEach((item) => {
-        const div = document.createElement("div");
-        div.className = "history-item";
+        const li = document.createElement("li");
+        li.className = "history-item";
 
-        const meta = document.createElement("div");
-        meta.className = "history-meta";
-        meta.textContent = `${formatDate(item.createdAt)}｜${item.word || ""}｜${item.type || ""}｜${item.viewpoint || ""}`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.innerHTML = `
+          <span class="history-title">${escapeHtml(item.word)}｜${escapeHtml(item.type)}</span>
+          <span class="history-meta">${escapeHtml(item.createdAt)}</span>
+        `;
+        button.addEventListener("click", () => restoreHistory(item));
 
-        const title = document.createElement("div");
-        title.className = "history-title";
-        title.textContent = normalizeTitle(item.title).split("\n")[0] || "無題";
-
-        div.appendChild(meta);
-        div.appendChild(title);
-
-        div.addEventListener("click", () => {
-          wordInput.value = item.word || "";
-          typeSelect.value = item.type || "Instagram投稿";
-          viewSelect.value = item.viewpoint || "おまかせ";
-          currentResult = item;
-          renderResult(item);
-          window.scrollTo({ top: resultCard.offsetTop - 16, behavior: "smooth" });
-        });
-
-        historyList.appendChild(div);
+        li.appendChild(button);
+        historyList.appendChild(li);
       });
     }
 
-    async function copyResult() {
-      if (!currentResult) return;
+    function restoreHistory(item) {
+      wordInput.value = item.word || "";
+      typeSelect.value = item.type || "Instagram投稿";
+      viewSelect.value = item.view || "おまかせ";
+      showResult(item.result);
+      lastRequest = {
+        word: item.word,
+        type: item.type,
+        view: item.view,
+      };
+      retryButton.disabled = false;
+      setStatus("履歴から読み込みました。気になるところを整えて使ってください。");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-      const copyText = makeCopyText();
+    function showResult(data) {
+      lastResult = data;
+      titleOutput.textContent = data.title || "";
+      draftOutput.textContent = data.draft || "";
+      hintsOutput.textContent = Array.isArray(data.hints) ? data.hints.join("\n") : (data.hints || "");
+      resultEl.classList.add("is-visible");
+    }
+
+    async function generateText(request) {
+      setLoading(true);
+      setStatus("ひとつの言葉から文章の入口を作っています。");
 
       try {
-        await navigator.clipboard.writeText(copyText);
-        copyStatusEl.textContent = "コピーしました。入力内容・文章タイプ・視点も一緒に入っています。";
-      } catch {
-        const textarea = document.createElement("textarea");
-        textarea.value = copyText;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-        copyStatusEl.textContent = "コピーしました。";
+        const response = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(request),
+        });
+
+        if (!response.ok) {
+          throw new Error("通信に失敗しました。Worker URLや設定を確認してください。");
+        }
+
+        const data = await response.json();
+
+        if (!data.title || !data.draft || !data.hints) {
+          throw new Error("AIからの返答形式が想定と違いました。Worker側の返却形式を確認してください。");
+        }
+
+        showResult(data);
+        lastRequest = request;
+        retryButton.disabled = false;
+        setStatus("たたき台ができました。気になる一文を残して、自分の文章に整えてみてください。");
+
+        saveHistory({
+          word: request.word,
+          type: request.type,
+          view: request.view,
+          result: data,
+          createdAt: new Date().toLocaleString("ja-JP"),
+        });
+      } catch (error) {
+        console.error(error);
+        setStatus(error.message || "エラーが発生しました。少し時間を置いて試してください。", true);
+      } finally {
+        setLoading(false);
       }
     }
 
-    generateBtn.addEventListener("click", generateText);
-    retryBtn.addEventListener("click", generateText);
+    function buildRequest() {
+      const word = wordInput.value.trim();
+      const type = typeSelect.value;
+      const view = viewSelect.value;
 
-    clearBtn.addEventListener("click", () => {
+      if (!word) {
+        setStatus("まず、思い浮かんだものをひとつ入れてください。", true);
+        wordInput.focus();
+        return null;
+      }
+
+      if (word.length > 40) {
+        setStatus("40文字以内で入れてください。", true);
+        wordInput.focus();
+        return null;
+      }
+
+      return { word, type, view };
+    }
+
+    async function copyResult() {
+      if (!lastResult) return;
+
+      const text = [
+        "【タイトル案】",
+        lastResult.title,
+        "",
+        "【たたき台】",
+        lastResult.draft,
+        "",
+        "【広げるヒント】",
+        Array.isArray(lastResult.hints) ? lastResult.hints.join("\n") : lastResult.hints,
+      ].join("\n");
+
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus("コピーしました。noteやメモ帳に貼って、自由に整えてください。");
+      } catch {
+        setStatus("コピーできませんでした。本文を選択して手動でコピーしてください。", true);
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    generateButton.addEventListener("click", () => {
+      const request = buildRequest();
+      if (request) generateText(request);
+    });
+
+    retryButton.addEventListener("click", () => {
+      if (lastRequest) generateText(lastRequest);
+    });
+
+    clearButton.addEventListener("click", () => {
       wordInput.value = "";
-      currentResult = null;
-      resultCard.classList.remove("active");
-      retryBtn.disabled = true;
-      statusEl.textContent = "";
-      copyStatusEl.textContent = "";
+      resultEl.classList.remove("is-visible");
+      lastRequest = null;
+      lastResult = null;
+      retryButton.disabled = true;
+      setStatus("別の言葉を入れてください。");
       wordInput.focus();
     });
 
-    copyBtn.addEventListener("click", copyResult);
+    copyButton.addEventListener("click", copyResult);
 
-    clearHistoryBtn.addEventListener("click", () => {
-      localStorage.removeItem(HISTORY_KEY);
+    clearHistoryButton.addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
       renderHistory();
+      setStatus("履歴を消しました。");
     });
 
     wordInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        generateText();
+        event.preventDefault();
+        const request = buildRequest();
+        if (request) generateText(request);
       }
     });
 
