@@ -372,7 +372,7 @@
 <body>
   <main class="page">
     <section class="hero">
-      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.2</div>
+      <div class="badge">✨ ひとつの言葉から文章の入口を作る｜v1.4</div>
       <h1>一言で整える</h1>
 
       <p class="tagline">
@@ -723,6 +723,112 @@
     });
 
     renderHistory();
+
+        /* v1.4 コピー修正：
+       画面デザインは一切変更しない。
+       コピー時に、生成時点の「今、思い浮かんだもの」「文章タイプ」「視点」を入れる。
+       コピー完了時にボタン表示を一瞬変える。
+    */
+    (() => {
+      const copyButton =
+        document.getElementById("copyButton") ||
+        document.getElementById("copyBtn");
+
+      const generateButton =
+        document.getElementById("generateButton") ||
+        document.getElementById("generateBtn");
+
+      const retryButton =
+        document.getElementById("retryButton") ||
+        document.getElementById("retryBtn");
+
+      if (!copyButton) return;
+
+      let v14GeneratedSettings = null;
+
+      function getCurrentSettings() {
+        return {
+          word: document.getElementById("wordInput")?.value?.trim() || "",
+          type: document.getElementById("typeSelect")?.value || "",
+          viewpoint: document.getElementById("viewSelect")?.value || ""
+        };
+      }
+
+      if (generateButton) {
+        generateButton.addEventListener("click", () => {
+          v14GeneratedSettings = getCurrentSettings();
+        }, true);
+      }
+
+      if (retryButton) {
+        retryButton.addEventListener("click", () => {
+          v14GeneratedSettings = getCurrentSettings();
+        }, true);
+      }
+
+      const newCopyButton = copyButton.cloneNode(true);
+      copyButton.parentNode.replaceChild(newCopyButton, copyButton);
+
+      newCopyButton.addEventListener("click", async () => {
+        const settings = v14GeneratedSettings || getCurrentSettings();
+
+        const title =
+          document.getElementById("titleOutput")?.innerText?.trim() || "";
+
+        const draft =
+          document.getElementById("draftOutput")?.innerText?.trim() || "";
+
+        const hints =
+          document.getElementById("hintsOutput")?.innerText?.trim() || "";
+
+        const copyText = `【今、思い浮かんだもの】
+${settings.word}
+
+【文章タイプ】
+${settings.type}
+
+【視点】
+${settings.viewpoint}
+
+【タイトル案】
+${title}
+
+【たたき台】
+${draft}
+
+【広げるヒント】
+${hints}`;
+
+        try {
+          await navigator.clipboard.writeText(copyText);
+        } catch (error) {
+          const textarea = document.createElement("textarea");
+          textarea.value = copyText;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
+
+        const originalText = newCopyButton.textContent;
+        newCopyButton.textContent = "コピーしました";
+        newCopyButton.disabled = true;
+
+        const copyStatus =
+          document.getElementById("copyStatus") ||
+          document.getElementById("copyStatusText");
+
+        if (copyStatus) {
+          copyStatus.textContent =
+            "コピーしました。入力内容・文章タイプ・視点も一緒に入っています。";
+        }
+
+        setTimeout(() => {
+          newCopyButton.textContent = originalText || "コピーする";
+          newCopyButton.disabled = false;
+        }, 1500);
+      });
+    })();
   </script>
 </body>
 </html>
